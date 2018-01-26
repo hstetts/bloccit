@@ -11,6 +11,7 @@ require 'random_data'
 end
 posts = Post.all
 
+
 # Create Comments
 #call times on an integer and runs block a 100 times
 100.times do
@@ -22,6 +23,14 @@ posts = Post.all
    body: RandomData.random_paragraph
  )
 end
+
+puts "#{Post.count}"
+Post.find_or_create_by!(title: "Assignment Title", body: "Assignment Body Example")
+puts "#{Post.count}"
+
+puts "#{Comment.count}"
+Comment.find_or_create_by!(body: "Assignment Comment Example", post_id: 101 )
+puts "#{Comment.count}"
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
