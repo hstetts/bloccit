@@ -1,10 +1,12 @@
 <h1>All Posts</h1>
-<%#iterate over posts for each post we create a link with post.title
-#as the text that links to /posts/id with the id from the post.id#%>
+<%#iterate over posts, for each post we create a link with post.title
+ as the text that links to /posts/id with the id from the post.id#%>
 <% @posts.each do |post| %>
  <div class="media">
    <div class="media-body">
      <h4 class="media-heading">
+       <%#call link_to with object we are linking as a second arg, method will
+       detect the object, parse id, and create path using the id.#%>
        <%= link_to post.title, post %>
      </h4>
    </div>
