@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bloccit</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Bloccit</title>
+  <%= csrf_meta_tags %>
 
-    <%-# instructs browser on small, high high-pixel density screens -%>
-     <%-# to display our pages at a regular, readable size -%>
+  <%-# instructs browser on small, high high-pixel density screens -%>
+   <%-# to display our pages at a regular, readable size -%>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <div class="container">
-      <ul class="nav nav-tabs">
-        <li><%= link_to "Home", welcome_index_path %></li>
-        <li><%= link_to "About", welcome_about_path %></li>
-      </ul>
+<body>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li><%= link_to "Bloccit", root_path %></li>
+      <li><%= link_to "About", about_path %></li>
+    </ul>
 
-      <%= yield %>
-    </div>
+    <%= yield %>
+  </div>
 
-  </body>
+</body>
 </html>
