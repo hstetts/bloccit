@@ -1,5 +1,15 @@
 require 'random_data'
 
+# Create Advertisements
+10.times do
+ Advertisement.create!(
+
+   title: RandomData.random_sentence,
+   copy: RandomData.random_paragraph,
+   price: 10
+ )
+end
+
 # Create Posts
 50.times do
 #creating with a ! that instructs method to raise an error
@@ -26,3 +36,5 @@ end
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+
+# Create Advertisements
