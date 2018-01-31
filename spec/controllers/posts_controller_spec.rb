@@ -23,7 +23,6 @@ describe "GET #index" do
    end
  end
 
-#commented out bc won't write the implementation until later
 
 describe "GET show" do
  it "returns http success" do
@@ -42,7 +41,7 @@ describe "GET show" do
    #expect the post to equal my_post because we call show with the id of my_post. We are testing that the post returned to us is the post we asked for.
    expect(assigns(:post)).to eq(my_post)
  end
-   end
+end
 
 
 #when new is invoked, a new and unsaved Post object is created
