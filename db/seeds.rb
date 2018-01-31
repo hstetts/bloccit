@@ -1,4 +1,4 @@
-require 'random_data'
+include 'random_data'
 
 # Create Advertisements
 10.times do
