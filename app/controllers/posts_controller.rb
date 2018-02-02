@@ -43,5 +43,35 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.title = params[:post][:title]
+    @post.body = params[:post][:body]
+
+    if @post.save
+     flash[:notice] = "Post was updated."
+     redirect_to @post
+    else
+     flash.now[:alert] = "There was an error saving the post. Please try again."
+     render :edit
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+
+    #call destroy on @post.
+    #if successful, set a flash msg and redirect the user to the posts index view
+    #if destroy fails, redirect user to the show view using render :show
+    if @post.destroy
+      flash[:notice] = "\"#{@post.title}\" was deleted successfully."
+      redirect_to posts_path
+    else
+      flash.now[:alert] = "There was an error deleting the post."
+      render :show
+    end
   end
 end
