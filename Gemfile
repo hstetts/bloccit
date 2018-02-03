@@ -6,7 +6,7 @@ source 'https://rubygems.org'
  end
 
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
- gem 'rails', '~> 5.1.2'
+ gem 'rails', '~> 5.1.4'
 
  # #1
  group :production do
