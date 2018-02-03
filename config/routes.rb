@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  #Call the resources method and pass it a symbol that instructs Rails
-  #to create post routes for creating, updating, viewing and deleting
-  #instances of Post
-  resources :posts
+  resources :topics do
+     #pass resources :posts to the resources :topics block
+     #this nests the post routes under the topic routes
+     resources :posts, except: [:index]
+  end
+
 
   get 'about' => 'welcome#about'
 

@@ -1,10 +1,20 @@
 require 'random_data'
 
+# Create Topics
+15.times do
+ Topic.create!(
+   name:         RandomData.random_sentence,
+   description:  RandomData.random_paragraph
+ )
+end
+topics = Topic.all
+
 # Create Posts
 50.times do
 #creating with a ! that instructs method to raise an error
  Post.create!(
 #create random strings for title and body
+   topic:  topics.sample,
    title:  RandomData.random_sentence,
    body:   RandomData.random_paragraph
  )
@@ -24,5 +34,6 @@ posts = Post.all
 end
 
 puts "Seed finished"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
