@@ -59,18 +59,25 @@ describe "POST create" do
   #unlike new, the newly created object is persisted in DB
   #after PostsController#create is called w/ parameters, the count of Post instances in the DB will increase by one
   it "increases the number of Post by 1" do
-    expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
+    expect {
+      post :create, params: {
+        topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+      }.to change(Post,:count).by(1)
   end
 
   #when create is POSTed, we expect the newly created post to be assigned to @post
   it "assigns the new post to @post" do
-   post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+   post :create, params: {
+     topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph }
+   }
    expect(assigns(:post)).to eq Post.last
   end
 
   #expect to be redirected to the newly created post
   it "redirects to the new post" do
-    post :create, params: { topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+    post :create, params: {
+       topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph }
+     }
     #updated: bc route for the posts show view will also be updated to reflect nested posts,
     #we redirect to [my_topic, Post.last] instead of Post.last
     expect(response).to redirect_to [my_topic, Post.last]
