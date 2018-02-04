@@ -54,11 +54,22 @@ RSpec.describe UsersController, type: :controller do
        expect(assigns(:user).password).to eq new_user_attributes[:password]
      end
 
- # #8
+     #
      it "sets user password_confirmation properly" do
        post :create, params: { user: new_user_attributes }
        expect(assigns(:user).password_confirmation).to eq new_user_attributes[:password_confirmation]
      end
    end
 
+   describe 'POST confirm' do
+     it 'returns http success' do
+       post :confirm, params: { user: new_user_attributes }
+       expect(response).to have_http_status :success
+     end
+
+     it 'renders the #confirm view' do
+       post :confirm, params: { user: new_user_attributes }
+       expect(response).to render_template :confirm
+     end
+   end
 end
