@@ -16,3 +16,9 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+a.gravatar-image {
+  position: relative;
+  float: right;
+  margin: -5px;
+}

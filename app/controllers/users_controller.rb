@@ -10,7 +10,7 @@ class UsersController < ApplicationController
      @user.email = params[:user][:email]
      @user.password = params[:user][:password]
      @user.password_confirmation = params[:user][:password_confirmation]
-
+     @user.avatar = params[:user][:gravatar_id]
      #
      if @user.save
        flash[:notice] = "Welcome to Bloccit #{@user.name}!"
