@@ -1,5 +1,15 @@
 #define RandomData as a module bc it is a standalone library
 module RandomData
+ def self.random_name
+   first_name = random_word.capitalize
+   last_name = random_word.capitalize
+   "#{first_name} #{last_name}"
+ end
+
+ def self.random_email
+   "#{random_word}@#{random_word}.#{random_word}"
+ end
+
 #define random_paragraph, set sentences to array, create 4-6 random sentences
 #append to sentences. call join to combine each sentence in array, passing a space to separate
 #each sentence, join combines to full paragraph as string
