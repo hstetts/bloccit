@@ -12,10 +12,12 @@
  <div class="col-md-8">
    <p><%= @post.body %></p>
  </div>
+ <% if user_is_authorized_for_post?(@post) %>
  <div class="col-md-4">
    <!-- we replace edit_post_path with edit_topic_post_path, which takes two arguments, a topic and a post. -->
    <%= link_to "Edit", edit_topic_post_path(@post.topic, @post), class: 'btn btn-success' %>
    <!-- update link_to to take an array consisting of a topic and post, which it uses to build the link to delete a nested post.-->
    <%= link_to "Delete Post", [@post.topic, @post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
+ <% end %>
  </div>
 </div>
