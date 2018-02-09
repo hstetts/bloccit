@@ -5,8 +5,12 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   #order all posts by their created_at date, in descending order,
-  #with the most recent posts displayed first. 
+  #with the most recent posts displayed first.
   default_scope { order('created_at DESC') }
+
+  scope :order_by_title, -> { order(:title ) }
+  scope :ordered_by_reverse_created_at, -> { order('created_at') }
+
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
