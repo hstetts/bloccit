@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-<%= button_to "Yes", { :controller => 'users', :action => 'create', :params => params.permit!}, class: 'btn btn-success' %>
+<%= button_to "Yes", { :controller => 'users', :action => 'create', :params => params[:user].permit!}, class: 'btn btn-success' %>
 </div>
 
 <div class="col-md-4", style="width: auto;">
