@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   #use before_action filter to call the require_sign_in method before each of our controller actions
   #except show action
   before_action :require_sign_in, except: :show
+  before_action :authorize_moderator, only: [:edit, :update, :destroy]
 
   #use a second before_action filter to check the role of a signed-in user.
   #If the current_user isn't authorized based on their role, we'll redirect them to the posts show view.
@@ -91,7 +92,7 @@ class PostsController < ApplicationController
   def authorize_user
     post = Post.find(params[:id])
     #we redirect the user unless they own the post they're attempting to modify, or they're an admin.
-    unless current_user == post.user || current_user.admin?
+    unless current_user == post.user || current_user.admin? || current_user.moderator?
        flash[:alert] = "You must be an admin to do that."
        redirect_to [post.topic, post]
     end
