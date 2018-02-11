@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-<<<<<<< HEAD
+
   has_many :posts, dependent: :destroy
-=======
+
   #register an inline callback directly after the before_save callback.
->>>>>>> bloccit-checkpoint-authentication-user
+
   before_save { self.email = email.downcase if email.present? }
   #shorthand for  self.role = :member if self.role.nil?
   before_save { self.role ||= :member }
