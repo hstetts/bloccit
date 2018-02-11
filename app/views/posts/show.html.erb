@@ -14,7 +14,8 @@
    <div>
      <h3>Comments</h3>
      <%= render @post.comments %>
-  </div>
+   </div>
+
     <!-- allow signed in users to see the comment form.-->
      <% if current_user %>
        <!-- render the comment form, and use comments/form,

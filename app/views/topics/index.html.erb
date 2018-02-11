@@ -7,13 +7,7 @@
      <div class="media">
        <div class="media-body">
          <h4 class="media-heading">
-           <!-- Create a link to the show view for each topic -->
-           <%= link_to topic.name, topic %>
-         </h4>
-         <small>
-           <%= topic.description %>
-         </small>
-       </div>
+        <%= render @topics %>
      </div>
    <% end %>
  </div>

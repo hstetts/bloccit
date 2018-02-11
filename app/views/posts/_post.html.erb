@@ -1,0 +1,11 @@
+<div class="media">
+ <div class="media-body">
+   <%= link_to post.title, topic_post_path(post.topic, post) %>
+   <small>
+     submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
+     <%= post.comments.count %> Comments
+   </small>
+
+
+ </div>
+</div>
