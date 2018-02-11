@@ -311,16 +311,16 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     describe "GET new" do
-      it "returns http success" do
+      it "returns http redirect" do
         get :new
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
     end
 
     describe "POST create" do
       it "returns http redirect" do
         post :create, params: { topic: { name: RandomData.random_sentence, description: RandomData.random_paragraph } }
-        expect(response).to redirect_to topics_path
+        expect(response).to redirect_to Topic.last
       end
     end
 
@@ -368,12 +368,6 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     describe "DELETE destroy" do
-      it "deletes the topic" do
-        delete :destroy, params: { id: my_topic.id }
-        count = Post.where({id: my_topic.id}).size
-        expect(count).to eq 0
-      end
-
       it "redirects to topics index" do
         delete :destroy, params: { id: my_topic.id }
         expect(response).to redirect_to topics_path
