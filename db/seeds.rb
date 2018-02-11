@@ -40,6 +40,7 @@ posts = Post.all
 #call sample on the array returned by Post.call, in order to pick
 #random post to associate each comment with
 #returns a random element from the array every time it is called
+   user: users.sample,
    post: posts.sample,
    body: RandomData.random_paragraph
  )

@@ -11,6 +11,16 @@
 <div class="row">
  <div class="col-md-8">
    <p><%= @post.body %></p>
+   <div>
+     <h3>Comments</h3>
+     <%= render @post.comments %>
+  </div>
+    <!-- allow signed in users to see the comment form.-->
+     <% if current_user %>
+       <!-- render the comment form, and use comments/form,
+       because we are rendering the comment form from a post view. -->
+       <%= render 'comments/form', comment: Comment.new, post: @post %>
+     <% end %>
  </div>
  <% if user_is_authorized_for_post?(@post) %>
  <div class="col-md-4">
