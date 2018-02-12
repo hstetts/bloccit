@@ -22,14 +22,19 @@ topics = Topic.all
 
 # Create Posts
 50.times do
-#creating with a ! that instructs method to raise an error
- Post.create!(
-#create random strings for title and body
-   user:   users.sample,
-   topic:  topics.sample,
-   title:  RandomData.random_sentence,
-   body:   RandomData.random_paragraph
- )
+  #creating with a ! that instructs method to raise an error
+  post = Post.create!(
+  #create random strings for title and body
+     user:   users.sample,
+     topic:  topics.sample,
+     title:  RandomData.random_sentence,
+     body:   RandomData.random_paragraph
+   )
+
+   #Update the time a post was created. This makes our seeded data more realistic.
+   post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+   #Create between one and five votes for each post. [-1, 1].sample randomly creates either an up vote or a down vote.
+   rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
 end
 posts = Post.all
 
@@ -66,3 +71,4 @@ puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Vote.count} votes created"
