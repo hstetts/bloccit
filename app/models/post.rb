@@ -11,6 +11,8 @@ class Post < ApplicationRecord
   #with the most recent posts displayed first.
   default_scope { order('rank DESC') }
 
+  after_create :create_vote
+
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
   validates :topic, presence: true
@@ -41,4 +43,9 @@ class Post < ApplicationRecord
     new_rank = points + age_in_days
     update_attribute(:rank, new_rank)
   end
+
+  private
+    def create_vote
+      user.votes.create(post: self, value: 1)
+    end
 end

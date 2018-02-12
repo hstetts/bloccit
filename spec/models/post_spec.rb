@@ -72,6 +72,16 @@ RSpec.describe Post, type: :model do
      end
    end
 
+   describe "upvote new post" do
+     before do
+       @new_post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+     end
+
+     it "upvotes a new post once it is created" do
+       expect(@new_post.up_votes).to eq(1)
+     end
+   end
+
    describe "#update_rank" do
      #expect that a post's rank will be determined by the following calculation:
      it "calculates the correct rank" do
