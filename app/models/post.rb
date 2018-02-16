@@ -11,6 +11,10 @@ class Post < ApplicationRecord
   #order all posts by their created_at date, in descending order,
   #with the most recent posts displayed first.
   default_scope { order('rank DESC') }
+  #use a lambda (->) to ensure that a user is present or signed in. If the user is present, we return all posts.
+  #If not, we use the Active Record joins method to retrieve all posts which belong to a public topic.
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
+
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true

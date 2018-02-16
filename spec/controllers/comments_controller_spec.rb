@@ -3,10 +3,10 @@ include SessionsHelper
 
 
 RSpec.describe CommentsController, type: :controller do
-  let(:my_user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-  let(:other_user) { User.create!(name: RandomData.random_name, email: RandomData.random_email, password: "helloworld", role: :member) }
-  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
+  let(:my_topic) { create(:topic) }
+  let(:my_user) { create(:user) }
+  let(:other_user) { create(:user) }
+  let(:my_post) { create(:post, topic: my_topic, user: my_user) }
   let(:my_comment) { Comment.create!(body: 'Comment Body', post: my_post, user: my_user) }
 
    #create specs for guest users, who we will redirect to sign in if they attempt to create or delete a comment.
@@ -34,7 +34,7 @@ RSpec.describe CommentsController, type: :controller do
 
      describe "POST create" do
        it "increases the number of comments by 1" do
-         expect{ post :create, post_id: my_post.id, comment: {body: RandomData.random_sentence} }.to change(Comment,:count).by(1)
+         expect{ post :create, params: { post_id: my_post.id, comment: {body: RandomData.random_sentence} } }.to change(Comment,:count).by(1)
        end
 
        it "redirects to the post show view" do

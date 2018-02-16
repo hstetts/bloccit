@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-let(:my_user) { User.create!(name: "Blochead", email: "blochead@bloc.io", password: "password") }
+  let(:my_user) { create(:user) }
 
    describe "GET new" do
      it "returns http success" do
@@ -47,7 +47,7 @@ let(:my_user) { User.create!(name: "Blochead", email: "blochead@bloc.io", passwo
        delete :destroy, params: { id: my_user.id }
        expect(response).to redirect_to root_path
      end
- 
+
      it "deletes the user's session" do
        delete :destroy, params: { id: my_user.id }
        expect(assigns(:session)).to be_nil

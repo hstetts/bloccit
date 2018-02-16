@@ -10,14 +10,10 @@ RSpec.describe Post, type: :model do
    let(:description) { RandomData.random_paragraph }
    let(:title) { RandomData.random_sentence }
    let(:body) { RandomData.random_paragraph }
-   #parent topic for post
-   let(:topic) { Topic.create!(name: name, description: description) }
-   #create a user to associate w/ a test post
-   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-   #chained method creates a post for a given topic
-   #associate user with post when we create the test post
-   #associate post with topic via topic.posts.create!
-   let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+
+   let(:topic) { create(:topic) }
+   let(:user) { create(:user) }
+   let(:post) { create(:post) }
 
    it { is_expected.to have_many(:comments) }
    it { is_expected.to have_many(:votes) }
@@ -39,7 +35,7 @@ RSpec.describe Post, type: :model do
   #test whether post returns a non-nil value when post.title or post.body is called
   describe "attributes" do
     it "has a title, body, and user attribute" do
-      expect(post).to have_attributes(title: title, body: body, user: user)
+      expect(post).to have_attributes(title: post.title, body: post.body)
     end
   end
 
@@ -52,12 +48,13 @@ RSpec.describe Post, type: :model do
        @down_votes = post.votes.where(value: -1).count
      end
 
+
    #test that up_votes returns the count of up votes
    describe "#up_votes" do
      it "counts the number of votes with value = 1" do
        expect( post.up_votes ).to eq(@up_votes)
      end
-   end
+
 
    #test that down_votes returns the count of down votes
    describe "#down_votes" do
@@ -91,6 +88,7 @@ RSpec.describe Post, type: :model do
        post.votes.create!(value: -1, user: user)
        expect(post.rank).to eq (old_rank - 1)
      end
-   end
+    end
+  end
  end
-end
+end 
