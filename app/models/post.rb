@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :topic
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   #Add the votes association to Post. allows us to call post.votes
   has_many :votes, dependent: :destroy

@@ -1,0 +1,14 @@
+<%# use the favorite_for method we created in User to collect the  favorite it returns to use later.
+syntax relies on most objects are "truthy", while nil is not,
+allows us to test a condition and get a return value in one line. #%>
+ <% if favorite = current_user.favorite_for(post) %>
+ <%# if favorite for current user and the post, we display a link to unfavorite the post.#%>
+   <%= link_to [post, favorite], class: 'btn btn-danger', method: :delete do %>
+     <i class="glyphicon glyphicon-star-empty"> </i>&nbsp; Unfavorite
+   <% end %>
+ <% else %>
+ <%#if not, display link to create a new favorite #%>
+   <%= link_to [post, Favorite.new], class: 'btn btn-primary', method: :post do %>
+     <i class="glyphicon glyphicon-star"> </i>&nbsp; Favorite
+   <% end %>
+ <% end %>

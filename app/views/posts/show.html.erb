@@ -1,5 +1,5 @@
 <h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+
 
 <div>
    <%= render partial: 'votes/voting', locals: { post: @post } %>
@@ -43,6 +43,9 @@
         </small>
        </div>
       </h3>
+      <% if current_user %>
+       <%= render partial: 'favorites/favorite', locals: { post: @post } %>
+     <% end %>
     </div>
  </div>
 </div>
