@@ -6,6 +6,7 @@ RSpec.describe VotesController, type: :controller do
   let(:my_user) { create(:user) }
   let(:other_user) { create(:user) }
   let(:user_post) { create(:post, topic: my_topic, user: other_user) }
+  let(:my_vote) { create(:vote) }
 
   #test that unsigned-in users are redirected to the sign-in page, as they will not be allowed to vote on posts.
   context "guest" do

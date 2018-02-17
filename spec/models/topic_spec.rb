@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
- let(:topic) { create(:topic) }
  let(:public) { true }
+ let(:topic) { create(:topic) }
+
 
 
  it { is_expected.to have_many(:posts) }
