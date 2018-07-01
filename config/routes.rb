@@ -5,7 +5,7 @@ Rails.application.routes.draw do
      resources :posts, except: [:index]
   end
 
-<<<<<<< HEAD
+
   #use only: [] because we don't want to create any /posts/:id routes, just posts/:post_id/comments routes.
   resources :posts, only: [] do
      #only add create and destroy routes for comments.
@@ -24,10 +24,10 @@ Rails.application.routes.draw do
 
   get 'about' => 'welcome#about'
 
-=======
+
   get 'welcome/about'
-  
+
   # declare the deafult page the app loads on homepage
->>>>>>> bloccit-checkpoint-static-pages
+
   root 'welcome#index'
 end
